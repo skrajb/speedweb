@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises List</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Add transition effects for buttons */
+        .exercise-button {
+            margin: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Change background color on hover */
+        .exercise-button:hover {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            transform: scale(1.05); /* Slightly enlarge the button */
+        }
+
+        /* Add a fade-in effect for the table */
+        .exercise-container {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Keyframes for fade-in effect */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+
+        .fade-in {
+            animation: fadeIn 1s forwards; /* 1 second duration */
+        }
+    </style>
+</head>
+<body>
+<img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" class="fadeIn" height="100px" width="300PX">
+<img src="Typing Boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="exercises.html">Exercises</a></li>
+            <li><a href="SpeedTest/index.html">Speed Test</a></li>
+        </ul>
+    </nav>
+    <h1>Exercises List</h1>
+    
+    <div class="exercise-container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color:black;color:white;font-size: 20px;">
+					English Exercises<br><img src="P.png" width="150px" height="100px"></th>
+                    <th style="background-color:black;color:white;font-size:20px;">Punjabi Exercises<br><img src="P.png" width="150px" height="100px"><br></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="exerciseListEnglish"></td>
+                    <td id="exerciseListPunjabi"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Load exercises from localStorage
+        const exercisesEnglish = JSON.parse(localStorage.getItem('exercisesEnglish')) || [];
+        const exercisesPunjabi = JSON.parse(localStorage.getItem('exercisesPunjabi')) || [];
+
+        // Render exercises as buttons in a table
+        function renderExercises() {
+            const englishContainer = document.getElementById('exerciseListEnglish');
+            const punjabiContainer = document.getElementById('exerciseListPunjabi');
+
+            // Function to create buttons with a delay
+            const createButtons = (exercises, container, language) => {
+                exercises.forEach((ex, index) => {
+                    setTimeout(() => {
+                        container.innerHTML += `
+                            <button class="exercise-button" onclick="startTypingTest('${encodeURIComponent(ex.text)}', '${language}')">Exercise ${index + 1}</button>
+                        `;
+                    }, index * 200); // Delay of 200ms for each button
+                });
+            };
+
+            // Clear containers before rendering
+            englishContainer.innerHTML = '';
+            punjabiContainer.innerHTML = '';
+
+            // Create buttons for each language
+            createButtons(exercisesEnglish, englishContainer, 'English');
+            createButtons(exercisesPunjabi, punjabiContainer, 'Punjabi');
+        }
+
+        function startTypingTest(exercise, language) {
+            const encodedExercise = encodeURIComponent(exercise);
+            window.location.href = `index.html?exercise=${encodedExercise}&language=${language}`; // Redirect to typing test
+        }
+
+        // Initial render
+        renderExercises();
+		// Disable specific keyboard shortcuts
+document.addEventListener('keydown', function(event) {
+    // Disable Ctrl key
+    if (event.ctrlKey) {
+        event.preventDefault();
+    }
+
+    // Disable Ctrl + U
+    if (event.ctrlKey && event.key === 'u') {
+        event.preventDefault();
+    }
+
+    // Disable Ctrl + C
+    if (event.ctrlKey && event.key === 'c') {
+        event.preventDefault();
+    }
+    // Disable Ctrl + P
+    if (event.ctrlKey && event.key === 'p') {
+        event.preventDefault();
+    }
+    // Disable F12
+    if (event.key === 'F12') {
+        event.preventDefault();
+    }
+});
+// Disable right-click and specific keyboard shortcuts
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
+
+    </script>
+</body>
+</html>

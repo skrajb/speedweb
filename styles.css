@@ -1,0 +1,338 @@
+body {
+    font-family: Bookman Old Style, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+}
+
+h1 {
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.curved {
+    font-size: 24px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+p.curved {
+    background-color: #e3f2fd;
+    color: black;
+    white-space: normal; /* Allows text wrapping */
+    line-height: 1.6;
+    font-size: 24px;
+    width: 100%;
+    height: 30%;
+    word-wrap: break-word; /* Ensures long words wrap to next line */
+    box-sizing: border-box; /* Includes padding in width calculation */
+}
+
+textarea.curved {
+    border: 2px solid #42a5f5;
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 10px;
+    font-size: 24px;
+    width: 100%;
+}
+
+textarea.curved:focus {
+    outline: none;
+    border-color: #0d47a1;
+    width: 100%;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #388E3C;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggle-container label {
+    cursor: pointer;
+}
+
+#test_text_container {
+    border: 2px dashed #42a5f5;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    height: auto;
+    text-align: left;
+    line-height: 5px;
+}
+
+#typed_text {
+    border: 2px dashed #42a5f5;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 97%;
+    word-wrap: break-word;
+    height: 20%;
+    text-align: left;
+    line-height: 27px;
+    font-family: Bookman Old Style;
+}
+
+.correct {
+    background-color: black;
+    color: white;
+}
+
+.incorrect {
+    color: yellow; /* Color for incorrect words */
+}
+
+#test_text {
+    overflow: auto;
+    word-wrap: normal;
+    display: inline-block;
+}
+
+/* Results Styling */
+.results-container {
+    background-color: #f1f8e9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.results-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.results-item {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.results-item span {
+    font-weight: bold;
+}
+
+.correct-count {
+    color: black;
+}
+
+.incorrect-count {
+    color: red; /* Color for incorrect words */
+}
+
+.accuracy {
+    color: #2196F3;
+}
+
+.results-footer {
+    font-size: 16px;
+    color: #999999;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Dark mode styling for results */
+.dark-mode .results-container {
+    background-color: #2c3e50;
+    border-color: #2980b9;
+}
+
+.dark-mode .results-header {
+    color: #2980b9;
+}
+
+.dark-mode .correct-count {
+    color: #16a085;
+}
+
+.dark-mode .incorrect-count {
+    color: #e74c3c;
+}
+
+.dark-mode .accuracy {
+    color: #3498db;
+}
+
+/* Light and Dark Mode Toggle Image */
+#mode_toggle_img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.dark-mode #mode_toggle_img {
+    content: url('https://img.icons8.com/ios-filled/50/ffffff/sun.png');
+}
+
+/* Light Mode */
+#mode_toggle_img.light-mode {
+    content: url('https://img.icons8.com/ios-filled/50/000000/moon.png');
+}
+
+#live_accuracy_text {
+    transition: color 0.5s ease;
+}
+
+#accuracy_bar {
+    transition: width 0.5s ease;
+}
+
+.highlight {
+    background-color: yellow; /* Change this to your desired highlight color */
+    font-weight: bold; /* Optional: make highlighted word bold */
+}
+
+.current {
+    background-color: yellow; /* Highlight color for current word */
+}
+
+.correct {
+    /*color: green; Color for correct words */
+}
+
+.incorrect {
+    color: red; /* Color for incorrect words */
+}
+body {
+    font-family: Bookman Old Style, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.exercise-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #388E3C;
+}
+
+textarea {
+    border: 2px solid #42a5f5;
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 10px;
+    font-size: 24px;
+    width: 100%;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #0d47a1;
+}
+
+.hidden {
+    display: none;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
+.dark-mode {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+}
+.correct {
+    color: green; /* Correct words */
+}
+
+.wrong {
+    color: red; /* Wrong words */
+}
+
+.skipped {
+    color: orange; /* Skipped words */
+}
+
+.extra {
+    color: blue; /* Extra typed words */
+}
+nav {
+            background-color: black; /* Green background */
+            padding: 10px; /* Padding around the nav */
+			border-radius:15px;
+        }
+
+        nav ul {
+            list-style-type: none; /* Remove bullet points */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex; /* Use flexbox for horizontal layout */
+        }
+
+        nav ul li {
+            margin-right: 20px; /* Space between items */
+        }
+
+        nav ul li a {
+            color: white; /* White text color */
+            text-decoration: none; /* Remove underline */
+            padding: 8px 16px; /* Padding for links */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        nav ul li a:hover {
+            background-color: #388E3C; /* Darker green on hover */
+        }

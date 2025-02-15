@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test Results</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        h2 { color: #30d5c8; }
+        h3 { color: red; }
+
+        .results-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: auto;
+            max-width: 95%;
+            animation: fadeIn 1s ease-in-out; /* Apply fade-in animation */
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            text-align: justify;
+        }
+
+        th { background-color: #f2f2f2; }
+
+        button {
+            background-color: #388E3C;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: transform 0.2s; /* Smooth transition for scaling */
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        nav {
+            background-color: black;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: #388E3C;
+        }
+
+        /* Styling for word highlighting */
+        .correct { color: green; font-weight: bold; }
+        .wrong { color: red; font-weight: bold; }
+        .untouched { color: gray; font-style: italic; }
+        .skipped { color: grey; text-decoration: italic; }
+        .extra { color: yellow; }
+        body {
+            margin: 0;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" height="100px" width="300PX">
+    <img src="Typing Boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="exercises.html">Exercises</a></li>
+            <li><a href="SpeedTest/index.html">Speed Test</a></li>
+        </ul>
+    </nav>
+
+    <div class="results-container">
+        <h1>Typing Test Results</h1>
+        <p id="congratulations"></p>
+        <div id="results"></div>
+        <div id="typed_words_display" style="margin-top: 20px;"></div> <!-- New div for typed words -->
+        <button onclick="window.location.href='exercises.html'">Try Another Test</button>
+    </div>
+
+    <script>
+        function highlightTypedText(originalArray, typedArray) {
+            let result = [];
+            let originalIndex = 0, typedIndex = 0;
+
+            while (originalIndex < originalArray.length || typedIndex < typedArray.length) {
+                const originalWord = originalArray[originalIndex] || "";
+                const typedWord = typedArray[typedIndex] || "";
+
+                if (originalIndex < originalArray.length && typedIndex < typedArray.length && originalWord === typedWord) {
+                    // Correct word
+                    result.push(`<span class="correct">${typedWord}</span>`);
+                    originalIndex++;
+                    typedIndex++;
+                } else if (typedIndex < typedArray.length && !originalArray.includes(typedWord)) {
+                    // Extra word (typed but not in the original text)
+                    result.push(`<span class="wrong">${typedWord}</span>`);
+                    typedIndex++;
+                } else if (originalIndex < originalArray.length) {
+                    // Skipped word (exists in original but was not typed)
+                    result.push(`<span class="skipped">${originalWord}</span>`);
+                    originalIndex++;
+                } else {
+                    // Wrong word (misspelled)
+                    result.push(`<span class="wrong">${typedWord}</span>`);
+                    typedIndex++;
+                }
+            }
+
+            return result.join(" ");
+        }
+
+        function displayResults() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const originalText = decodeURIComponent(urlParams.get('exercise')); 
+            const typedWords = JSON.parse(decodeURIComponent(urlParams.get('typedWords'))); 
+            const skipWords = parseInt(urlParams.get('skipWords'));
+            const extraWords = parseInt(urlParams.get('extraWords'));
+            const correctCount = parseInt(urlParams.get('correctCount'));
+            const wrongCount = parseInt(urlParams.get('wrongCount'));
+            const typingSpeed = parseInt(urlParams.get('typingSpeed'));
+            const accuracy = parseFloat(urlParams.get('accuracy'));
+            const correctChars = parseInt(urlParams.get('correctChars'));
+            const wrongChars = parseInt(urlParams.get('wrongChars'));
+            const backspaceCount = parseInt(urlParams.get('backspaceCount'));
+            const elapsedTime = parseInt(urlParams.get('elapsedTime'));
+
+            let resultsHTML = `<table>
+                <thead>
+                    <tr><th colspan="4" style="text-align:center"> TEST SUMMARY</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gross Characters: </td> <td>${correctChars + wrongChars + (correctCount + wrongCount)}</td>
+                        <td>Wrong Words:</td> <td>${wrongCount}</td>
+                    </tr>
+                    <tr>
+                        <td>Net Characters:</td> <td>${correctChars + wrongChars + (correctCount + wrongCount) - (wrongCount * 5)}</td>
+                        <td>Wrong Characters:</td> <td>${(wrongCount) * 5}</td>
+                    </tr>
+                    <tr>
+                        <td>As Per PSSSB Instruction <br><mark>used 10 Minute to calculating Gross Speed</mark>:</td> <td class="highlight">${(((correctChars + correctCount + wrongChars + wrongCount) / 5) / (600 / 60)).toFixed(0)} WPM</td>
+                        <td>Actual Gross Speed:</td> <td class="highlight"><i style="color:Blue;">${(((correctChars + correctCount + wrongChars + wrongCount) / 5) / (elapsedTime / 60)).toFixed(0)} WPM</i></td>
+                    </tr>
+                    <tr>
+                        <td>Accuracy:</td>
+                        <td>${(((correctChars + wrongChars + correctCount + wrongCount) - (wrongCount * 5)) / (correctChars + wrongChars + correctCount + wrongCount) * 100).toFixed(2)}%</td></tr>
+                        <tr><td> Skip Words</td><td>${skipWords}</td><td> Extra Words</td><td>${extraWords}</td>
+                    </tr>
+                    <tr>
+                        <td>Backspace Used:</td> <td>${backspaceCount}</td>
+                        <td>Time Taken:</td> <td>${Math.floor(elapsedTime / 60)}m ${elapsedTime % 60}s</td>
+                    </tr>
+                </tbody>
+            </table>`;
+
+            resultsHTML += `<h1>Chunk Comparison</h1>
+                            <table>
+                                <tr>
+                                    <th width="4%">Chunk No</th>
+                                    <th width="48%">Original Chunk</th>
+                                    <th width="48%">Typed Chunk</th>
+                                </tr>`;
+
+            const originalChunk = originalText.split(" ");
+            const typedChunk = typedWords.join(" ").split(" ");
+
+            const chunkSize = Math.ceil(originalChunk.length / 10);
+            for (let i = 0; i < Math.max(originalChunk.length, typedChunk.length); i += chunkSize) {
+                const originalSlice = originalChunk.slice(i, i + chunkSize);
+                const typedSlice = typedChunk.slice(i, i + chunkSize);
+                resultsHTML += `<tr>
+                                    <td>${Math.floor(i / chunkSize) + 1}</td>
+                                    <td>${originalSlice.join(' ')}</td>
+                                    <td>${highlightTypedText(originalSlice, typedSlice)}</td>
+                                </tr>`;
+            }
+
+            resultsHTML += `</table>`;
+            document.getElementById('results').innerHTML = resultsHTML;
+
+            // Display typed words for the current chunk
+            const currentChunkIndex = Math.floor((correctCount + wrongCount) / chunkSize); // Calculate current chunk index
+            const typedWordsForCurrentChunk = typedWords[currentChunkIndex] || ""; // Get typed words for the current chunk
+          
+            if (((((correctChars + wrongChars) / 5) / 10).toFixed(1)) >= 30 && accuracy >= 92 && wrongCount <= 24) {
+                document.getElementById('congratulations').innerHTML = `<h2>Congratulations! You passed! 🎉</h2><canvas id="confettiCanvas"> </canvas>`;
+            } else {
+                document.getElementById('congratulations').innerHTML = "<h3>Sorry, you failed. Try again! 😞</h3>";
+            }
+        }
+
+        displayResults();
+    </script>
+</body>
+</html>

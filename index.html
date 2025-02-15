@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chunk Typing Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .correct { color: green; }
+        .wrong { color: red; }
+        .dark-mode { background-color: #333; color: white; }
+        .highlight { background-color: yellow; font-weight: bold; } /* Highlight style */
+    </style>
+</head>
+<body style="Font-family:Bookman Old Style">
+    <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" height="100px" width="300PX">
+    <img src="Typing Boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="exercises.html">Exercises</a></li>
+            <li><a href="SpeedTest/index.html">Speed Test</a></li>
+        </ul>
+    </nav>
+    <table width="100%" border>
+        <tr class="hidden">
+            <td><b>Set Timer:  <label for="timer">
+                    <select id="timer">
+                        <option value="600">10 minutes</option>
+                    </select>
+                </label></b></td>
+           
+        </tr>
+        <tr>
+          <div id="test_text_container" style="width: 97%;">
+		  <b><label for="highlight_toggle">
+                    <input type="checkbox" id="highlight_toggle" checked> Highlight Text
+                </label></b>
+			
+				<b><label for="backspace_toggle">
+                    <input type="checkbox" id="backspace_toggle" checked> Allow Backspace 
+                </label></b> </div>
+        </tr>
+    </table>
+    <div id="live_results"></div>
+    <div id="results"></div> <!-- Added results div -->
+    
+    <table cellpadding="23">
+        <tr>
+            <td><b><font color="Red"><span id="time_remaining">-</span></b></font><center>
+                <b style="color:Red;font-size:15px;padding:5px"><span id="current_chunk_number">1</span></b></center>
+                
+                <div id="test_text_container" style="width: 97%;">
+                    <p class="curved" id="test_text">Loading...</p>
+                </div>
+                <textarea id="typed_text" rows="4" class="curved" placeholder="Start typing here..."spellcheck="False" autofocus></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th style="background-color:White" class="center" colspan="2">
+                <button id="restart_button" style="Float:left">Restart Test</button>
+                <center>
+                <button id="submit_button" style="Float:right">Submit Test</button>
+            </th>
+        </tr>
+    </table>
+    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+    <script>
+        // Function to split text into chunks
+        function splitIntoChunks(text, chunkCount) {
+            const words = text.split(/\s+/); // Split the text into words
+            const chunkSize = Math.ceil(words.length / chunkCount); // Calculate size of each chunk
+            const chunks = [];
+
+            for (let i = 0; i < chunkCount; i++) {
+                const chunk = words.slice(i * chunkSize, (i + 1) * chunkSize).join(' '); // Create chunk
+                if (chunk) {
+                    chunks.push(chunk); // Add chunk to array if not empty
+                }
+            }
+            return chunks;
+        }
+
+        // Add event listener for the back button
+        document.getElementById("back_to_exercise_button").addEventListener("click", function() {
+            window.location.href = "../index.html"; // Adjust the path as necessary
+        });
+
+        // Retrieve the exercise from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const exercise = urlParams.get('exercise');
+
+        if (exercise) {
+            const chunks = splitIntoChunks(decodeURIComponent(exercise), 10); // Split exercise into 10 chunks
+            document.getElementById("test_text").innerText = chunks[0]; // Display the first chunk
+            let currentChunkIndex = 0; // Initialize current chunk index
+
+            // Function to load the next chunk
+            function loadNextChunk() {
+                currentChunkIndex++;
+                if (currentChunkIndex < chunks.length) {
+                    document.getElementById("test_text").innerText = chunks[currentChunkIndex]; // Load next chunk
+                    document.getElementById("current_chunk_number").innerText = currentChunkIndex + 1; // Update chunk number
+                } else {
+                    document.getElementById("test_text").innerText = "No more chunks."; // End of chunks
+                }
+            }
+
+            // Call loadNextChunk() when the user submits the test
+            document.getElementById("submit_button").addEventListener("click", loadNextChunk);
+        } else {
+            document.getElementById("test_text").innerText = "Loading...";
+        }
+    </script>
+</body>
+</html>
