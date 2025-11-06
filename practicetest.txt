@@ -3,7 +3,7 @@
 In its thirty fifth flight (PSLV-C33), ISRO's Polar Satellite Launch Vehicle successfully launched the 1425 kg IRNSS-1G, the seventh satellite in the Indian Regional Navigation Satellite System (IRNSS) today afternoon (April 28, 2016) from Satish Dhawan Space Centre SHAR, Sriharikota. This is the thirty fourth consecutively successful mission of PSLV and the thirteenth in its 'XL' configuration. Honourable Prime Minister of India, Mr. Narendra Modi, heartily thanked and congratulated all the ISRO scientists and team ISRO for completing IRNSS constellation and dedicated IRNSS to the nation as 'NavIC' (Navigation Indian Constellation). He appreciated India's space community for making the country proud through such achievements which have helped in improving the life of common man. After PSLV-C33 lift-off at 1250 hrs (12:50 pm) IST from the First Launch Pad with the ignition of  the first stage, the subsequent important flight events, namely, strap-on ignitions and separations, first stage separation, second stage ignition, heat-shield separation, second stage separation, third stage ignition and separation, fourth stage ignition and satellite injection, took place as planned. After a flight of 19 minutes 42 seconds, IRNSS-1G was injected into an elliptical orbit of 283 km X 20,718 km inclined at an angle of 17.867 degree to the equator (very close to the intended orbit) following which the satellite successfully separated from the PSLV fourth stage. After separation, the solar panels of IRNSS-1G were deployed automatically. ISRO's Master Control Facility (MCF) at Hassan, Karnataka took over the control of the satellite. In the coming days, four orbit manoeuvres will be conducted from MCF to position the satellite in the Geostationary Orbit at 129.5 deg East longitude. IRNSS-1G is the seventh of the seven satellites constituting the space segment of the Indian satellites are functioning satisfactorily from their designated orbital positions.
 ---
 ### English
---- Time Management Mastery
+---
 Time management is not merely about creating a schedule or filling up a planner with long lists of tasks. It is a mindset, a method of approaching our day in a disciplined, intentional, and thoughtful manner. Many people fail not because they lack talent or ambition, but because they spend their time reacting instead of planning, drifting instead of deciding, and racing instead of focusing. To master time management, one must first acknowledge that time is a limited resource. Every minute wasted is gone forever, while every minute invested holds the power to create results, skills, and progress.
 
 The most effective individuals prioritize tasks based on importance rather than urgency. Urgency tricks us into believing that immediate action equals meaningful achievement. Importance reminds us that long-term impact matters more than short bursts of activity. Successful students, professionals, and entrepreneurs often begin their day by tackling their most meaningful task first, a technique known as “eating the frog.” It eliminates procrastination and builds momentum for the rest of the day.
@@ -18,7 +18,7 @@ Ultimately, time management is life management. When you manage your time well, 
 ---
 
 ### English
---- Power of Continuous Learning
+--- 
 Continuous learning is the foundation of modern success. In a rapidly changing world, where technology evolves each second and new opportunities appear daily, the willingness to learn has become more valuable than degrees, wealth, or background. Education does not end with school or college; true learning continues throughout life. The people who advance, innovate, and lead are those who stay curious and determined, treating every day as a chance to become better than before.
 
 Learning today is easier than at any other point in history. With online courses, tutorials, books, virtual libraries, and expert communities, knowledge is available at our fingertips. A smartphone and a desire to grow are enough to build skills that once required expensive classrooms. Yet continuous learning is not simply about collecting knowledge; it is about practicing, experimenting, applying ideas, and refining skills through experience.
@@ -38,7 +38,7 @@ Like muscles, the brain strengthens when challenged. Small daily efforts, whethe
 
 
 ### Punjabi
---- ਸਮੇਂ ਦੀ ਮਹੱਤਤਾ
+---
 ਸਮਾਂ ਮਨੁੱਖੀ ਜੀਵਨ ਦਾ ਸਭ ਤੋਂ ਕੀਮਤੀ ਤੋਹਫ਼ਾ ਹੈ। ਇਹ ਇੱਕ ਐਸੀ ਦੌਲਤ ਹੈ ਜਿਸਨੂੰ ਨਾ ਖਰੀਦਾ ਜਾ ਸਕਦਾ ਹੈ ਅਤੇ ਨਾ ਹੀ ਵਾਪਸ ਲਿਆ ਜਾ ਸਕਦਾ ਹੈ। ਜੋ ਸਮਾਂ ਬੀਤ ਗਿਆ, ਉਹ ਮੁੜ ਕਦੇ ਨਹੀਂ ਆਉਂਦਾ। ਇਸ ਲਈ ਸਿਆਣੇ ਲੋਕ ਕਹਿੰਦੇ ਹਨ ਕਿ ਸਮੇਂ ਦੀ ਕਦਰ ਕਰਨੀ ਚਾਹੀਦੀ ਹੈ। ਬਹੁਤ ਸਾਰੇ ਲੋਕ ਆਪਣੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਇਸ ਲਈ ਕਾਮਯਾਬ ਨਹੀਂ ਹੋ ਸਕਦੇ ਕਿਉਂਕਿ ਉਹ ਸਮੇਂ ਨੂੰ ਬਰਬਾਦ ਕਰ ਦੇਂਦੇ ਹਨ। ਉਹ ਕੰਮ ਜੋ ਅੱਜ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ, ਉਹ ਕੱਲ੍ਹ ਲਈ ਟਾਲ ਦਿੰਦੇ ਹਨ। ਇਹ ਆਦਤ ਆਹਿਸਤੇ-ਆਹਿਸਤੇ ਜੀਵਨ ਵਿੱਚ ਪਿੱਛੇ ਛੱਡ ਦਿੰਦੀ ਹੈ।
 
 ਜਿਸ ਮਨੁੱਖ ਨੇ ਸਮੇਂ ਦੀ ਕਦਰ ਕਰਨੀ ਸਿੱਖ ਲੀ, ਉਸਨੇ ਅੱਧੀ ਜ਼ਿੰਦਗੀ ਜਿੱਤ ਲੀ। ਕਿਉਂਕਿ ਸਮੇਂ ਦੀ ਯੋਜਨਾ ਬਣਾਉਣ ਨਾਲ ਕੰਮ ਸੁਚੱਜੇ ਢੰਗ ਨਾਲ ਹੁੰਦਾ ਹੈ। ਸਵੇਰ ਦਾ ਸਮਾਂ ਸਿਖਲਾਈ, ਕਸਰਤ ਅਤੇ ਤਿਆਰੀ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ। ਜਿਹੜਾ ਵਿਅਕਤੀ ਆਪਣਾ ਦਿਨ ਤਰਤੀਬ ਨਾਲ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ, ਉਹ ਹੋਰਾਂ ਦੇ ਮੁਕਾਬਲੇ ਵੱਧ ਤਰੱਕੀ ਕਰਦਾ ਹੈ।
@@ -49,7 +49,7 @@ Like muscles, the brain strengthens when challenged. Small daily efforts, whethe
 ---
 
 ### Punjabi
---- ਲਗਾਤਾਰ ਸਿਖਿਆ ਦੀ ਤਾਕਤ
+--- 
 ਅੱਜ ਦਾ ਯੁੱਗ ਗਿਆਨ ਅਤੇ ਤਕਨਾਲੋਜੀ ਦਾ ਯੁੱਗ ਹੈ। ਹਰ ਰੋਜ਼ ਨਵੀਨਤਾ ਆ ਰਹੀ ਹੈ, ਨਵੀਆਂ ਤਕਨੀਕਾਂ ਵਿਕਸਤ ਹੋ ਰਹੀਆਂ ਹਨ, ਤੇ ਨਵੀਆਂ ਮੌਕਿਆਂ ਦੇ ਦਰਵਾਜ਼ੇ ਖੁਲ੍ਹ ਰਹੇ ਹਨ। ਇਸ ਦੌਰ ਵਿੱਚ ਉਹੀ ਵਿਅਕਤੀ ਅੱਗੇ ਵਧਦਾ ਹੈ ਜੋ ਲਗਾਤਾਰ ਸਿੱਖਦਾ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਿਆ ਸਿਰਫ ਸਕੂਲ ਜਾਂ ਕਾਲਜ ਵਿੱਚ ਹੀ ਨਹੀਂ ਹੁੰਦੀ, ਇਹ ਤਾ ਜੀਵਨ ਭਰ ਦੀ ਪ੍ਰਕਿਰਿਆ ਹੈ। ਜੋ ਵਿਅਕਤੀ ਨਵਾਂ ਗਿਆਨ ਹਾਸਲ ਕਰਨ ਦੀ ਇੱਛਾ ਰੱਖਦਾ ਹੈ, ਉਹ ਕਦੇ ਵੀ ਪਿੱਛੇ ਨਹੀਂ ਰਹਿੰਦਾ।
 
 ਅੱਜ ਇੰਟਰਨੈੱਟ ਨੇ ਸਿੱਖਿਆ ਦੇ ਰਸਤੇ ਹੋਰ ਵੀ ਆਸਾਨ ਕਰ ਦਿੱਤੇ ਹਨ। ਕਿਤਾਬਾਂ, ਵੀਡੀਓਜ਼, ਕਲਾਸਾਂ, ਲੇਖ ਅਤੇ ਵੱਖ-ਵੱਖ ਕੋਰਸ ਸਾਡੇ ਬਿਲਕੁਲ ਨੇੜੇ ਹਨ। ਪਰ ਸਿਰਫ ਜਾਣਕਾਰੀ ਲੈਣਾ ਹੀ ਕਾਫ਼ੀ ਨਹੀਂ। ਗਲਤੀ ਕਰਨਾ, ਸੋਚਣਾ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨਾ ਅਤੇ ਸਿੱਖਿਆ ਨੂੰ ਅਮਲ ਵਿੱਚ ਲਿਆਉਣਾ ਵੀ ਜ਼ਰੂਰੀ ਹੈ। ਜਿਹੜਾ ਮਨੁੱਖ ਗਲਤੀਆਂ ਤੋਂ ਸਿੱਖਦਾ ਹੈ, ਉਹ ਸਭ ਤੋਂ ਤੇਜ਼ ਤਰੱਕੀ ਕਰਦਾ ਹੈ।
