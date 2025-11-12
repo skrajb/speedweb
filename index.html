@@ -1,118 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chunk Typing Test</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .correct { color: green; }
-        .wrong { color: red; }
-        .dark-mode { background-color: #333; color: white; }
-        .highlight { background-color: yellow; font-weight: bold; } /* Highlight style */
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Exercises Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { font-family: 'Bookman Old Style', serif; margin: 0; background: #f8f9fa; }
+    nav { background: #00295f; padding: 10px 20px;}
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+    nav ul li { margin-right: 20px; }
+    nav ul li a, nav ul li button { color: white; font-weight: bold; text-decoration: none; background: transparent; border: none; font-size: 16px; cursor: pointer; }
+    nav ul li a:hover, nav ul li button:hover { color: #ffce00; }
+    .header { display: flex; justify-content: space-between; padding: 10px 20px; align-items: center; }
+    header img { height: 80px; }
+    .container { width: 90%; margin: 20px auto; }
+    .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.15); margin-bottom: 20px; }
+    .card h2 { color: #00295f; border-left: 6px solid #00295f; padding-left: 10px; }
+    textarea, input { width: 100%; padding: 8px; margin-top: 6px; border-radius: 6px; border: 1px solid #ccc; }
+    button { margin-top: 8px; padding: 8px 14px; border: none; background: black; color: white; border-radius: 5px; cursor: pointer; }
+    button:hover { background: black; }
+    .delete-btn { background: #d40000; } .delete-btn:hover { background: #9b0000; }
+    .hidden { display: none; }
+    #loginModal { display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 20px; border-radius: 5px; text-align: center; max-width: 380px; width: 90%; }
+
+    /* Intro styles (transparent) */
+    #intro-screen { position: fixed; inset: 0; background: transparent; display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; z-index: 9999; animation: fadeOut 3s ease 2.8s forwards; pointer-events: none; }
+    .intro-text { font-family: 'Bookman Old Style', serif; font-size: 2.2rem; color: #00295f; text-shadow: 0 2px 10px rgba(0,0,0,0.15); position: relative; z-index: 2; animation: fadeInText 1s ease-in-out; }
+    .letters-container { position: absolute; width: 100%; height: 100%; overflow: hidden; }
+    .letter { position: absolute; color: #D4AF37; opacity: 0.8; font-family: 'Bookman Old Style', serif; animation: floatLetters 3s linear forwards; user-select: none; }
+    @keyframes floatLetters { from { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } to { transform: translateY(-600px) scale(1.3) rotate(360deg); opacity: 0; } }
+    @keyframes fadeOut { to { opacity: 0; visibility: hidden; display: none; } }
+    @keyframes fadeInText { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
 </head>
-<body style="Font-family:Bookman Old Style">
-    <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" height="100px" width="300PX">
-    <img src="Typing Boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+<body>
+  <!-- Intro overlay -->
+  <div id="intro-screen">
+    <div class="letters-container"></div>
+  </div>
 
-    <nav>
-        <ul>
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="exercises.html">Exercises</a></li>
-            <li><a href="SpeedTest/index.html">Speed Test</a></li>
-        </ul>
-    </nav>
-    <table width="100%" border>
-        <tr class="hidden">
-            <td><b>Set Timer:  <label for="timer">
-                    <select id="timer">
-                        <option value="600">10 minutes</option>
-                    </select>
-                </label></b></td>
-           
-        </tr>
-        <tr>
-          <div id="test_text_container" style="width: 97%;">
-		  <b><label for="highlight_toggle">
-                    <input type="checkbox" id="highlight_toggle" checked> Highlight Text
-                </label></b>
-			
-				<b><label for="backspace_toggle">
-                    <input type="checkbox" id="backspace_toggle" checked> Allow Backspace 
-                </label></b> </div>
-        </tr>
-    </table>
-    <div id="live_results"></div>
-    <div id="results"></div> <!-- Added results div -->
-    
-    <table cellpadding="23">
-        <tr>
-            <td><b><font color="Red"><span id="time_remaining">-</span></b></font><center>
-                <b style="color:Red;font-size:15px;padding:5px"><span id="current_chunk_number">1</span></b></center>
-                
-                <div id="test_text_container" style="width: 97%;">
-                    <p class="curved" id="test_text">Loading...</p>
-                </div>
-                <textarea id="typed_text" rows="4" class="curved" placeholder="Start typing here..."spellcheck="False" autofocus></textarea>
-            </td>
-        </tr>
-        <tr>
-            <th style="background-color:White" class="center" colspan="2">
-                <button id="restart_button" style="Float:left">Restart Test</button>
-                <center>
-                <button id="submit_button" style="Float:right">Submit Test</button>
-            </th>
-        </tr>
-    </table>
-    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
-    <script>
-        // Function to split text into chunks
-        function splitIntoChunks(text, chunkCount) {
-            const words = text.split(/\s+/); // Split the text into words
-            const chunkSize = Math.ceil(words.length / chunkCount); // Calculate size of each chunk
-            const chunks = [];
+  <div class="header">
+    <img src="Smartech Educatation Computer Centre3.png" alt="Smartech" class="logo">
+    <img src="Typing Boy.png" height="80">
+  </div>
 
-            for (let i = 0; i < chunkCount; i++) {
-                const chunk = words.slice(i * chunkSize, (i + 1) * chunkSize).join(' '); // Create chunk
-                if (chunk) {
-                    chunks.push(chunk); // Add chunk to array if not empty
-                }
-            }
-            return chunks;
+  <nav>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="exercises.html">Exercises</a></li>
+      <li><a href="english_tutor.html">English Tutor</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="margin-left:auto;">
+        <button onclick="document.getElementById('loginModal').style.display='flex'" id="loginBtn">Admin Login</button>
+        <button onclick="logout()" id="logoutButton" class="hidden">Logout</button>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <div class="intro-content">
+      <h1>Welcome to <span class="highlight">Smartech Typing Portal</span></h1>
+      <p style="font-size:1.1rem; line-height:1.2; color:#444;">
+        If you are preparing for government competitive exams such as <b>SSC CGL</b>, <b>PSSSB</b>, <b>RRB</b>, or any other typing-based test, our carefully designed <b>practice exercises</b> will help you enhance your speed and accuracy.
+      </p>
+      <div class="intro-buttons">
+        <a href="exercises.html" class="btn gold-btn">Start Practice</a>
+      </div>
+    </div>
+    <div class="intro-image">
+      <img src="Typing Boy.png" alt="Typing Boy">
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="card" style="text-align:center;">
+      <h2 id="quoteBox" style="font-style:italic; font-size:24;">Loading motivation...</h2>
+    </div>
+
+    <div class="card" id="typing-importance">
+      <h2>Importance of Typing Skills</h2>
+      <p>Typing is not just pressing keys — it’s the language of today’s digital world. Every message, document, and idea starts with the ability to type. In an age where communication moves at lightning speed, typing is no longer optional — it’s essential.</p>
+      <h3 style="margin-top:20px; color:#00295f;">Tips & Tricks to Improve Typing Speed</h3>
+      <ul id="tips-list" style="line-height:1.8; margin-left:20px; list-style-type: square;">
+        <li><b>Sit Properly:</b> Keep your back straight, elbows bent at right angles, and wrists relaxed.</li>
+        <li><b>Home Row Technique:</b> Place your fingers on <code>A S D F</code> and <code>J K L ;</code> — your typing base.</li>
+        <li><b>Don’t Look at the Keyboard:</b> Train your fingers to move by memory — this builds real typing speed.</li>
+        <li><b>Use All Fingers:</b> Let every finger play its part — this distributes effort and improves flow.</li>
+        <li><b>Focus on Accuracy First:</b> Speed will naturally increase once accuracy becomes consistent.</li>
+        <li><b>Practice Regularly:</b> Just 10 minutes of daily typing builds lasting improvement.</li>
+        <li><b>Take Short Breaks:</b> Rest your eyes and fingers to maintain focus and precision.</li>
+        <li><b>Challenge Yourself:</b> Type different passages, quotes, or use typing games for variety.</li>
+      </ul>
+    </div>
+
+    <div class="card hidden" id="exerciseContainer">
+      <h2>Manage Exercises</h2>
+      <div>
+        <input type="file" id="exerciseFile">
+        <button onclick="loadExercisesFromFile()">Upload Exercises File</button>
+      </div>
+      <div>
+        <input type="text" id="exerciseFileUrl" placeholder="Paste exercises file URL" value="https://raw.githubusercontent.com/skrajb/speedweb/refs/heads/main/practicetest.txt">
+        <button onclick="loadExercisesFromUrl()">Import Exercises from URL</button>
+      </div>
+
+      <div style="display:flex;gap:20px;margin-top:15px;">
+        <div style="width:50%;">
+          <h3>English Exercises</h3>
+          <input type="text" id="exerciseTitleEnglish" placeholder="Exercise title">
+          <textarea id="exerciseTextEnglish" rows="5" placeholder="Exercise text"></textarea>
+          <button onclick="addExercise('English')">Add English Exercise</button>
+          <div id="exerciseListEnglish"></div>
+        </div>
+        <div style="width:50%;">
+          <h3>Punjabi Exercises</h3>
+          <input type="text" id="exerciseTitlePunjabi" placeholder="Exercise title">
+          <textarea id="exerciseTextPunjabi" rows="5" placeholder="Exercise text"></textarea>
+          <button onclick="addExercise('Punjabi')">Add Punjabi Exercise</button>
+          <div id="exerciseListPunjabi"></div>
+        </div>
+      </div>
+
+      <br>
+      <button class="delete-btn" onclick="deleteAllExercises()" id="deleteAllButton">Delete All</button>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="loginModal">
+    <div class="modal-content">
+      <h2>Admin Login</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="verifyCredentials()">Login</button>
+      <p id="loginMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    /**************************************************************************
+     * CONFIG
+     * Replace nothing here — I've set this to the URL you confirmed earlier.
+     **************************************************************************/
+    const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzUwGTMXuoiRHn0TwU0JDvi9kCpdwpa7efuzoUT9bXQSMgdulWrCcSBYkGjjNnRMsWM/exec";
+
+    // local data / UI refs
+    let exercisesEnglish = JSON.parse(localStorage.getItem('exercisesEnglish')) || [];
+    let exercisesPunjabi = JSON.parse(localStorage.getItem('exercisesPunjabi')) || [];
+
+    // session & user
+    let isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    let currentUser = sessionStorage.getItem('currentUser') || null;
+    let sessionId = sessionStorage.getItem('sessionId') || null; // unique per browser session
+
+    // UI elements (some are referenced by id directly in HTML)
+    const loginModal = document.getElementById('loginModal');
+    const exerciseContainer = document.getElementById('exerciseContainer');
+    const logoutButton = document.getElementById('logoutButton');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginMessage = document.getElementById('loginMessage');
+    const quoteBox = document.getElementById('quoteBox');
+
+    /**************************************************************************
+     * Helper: escapeHTML (keeps exercise listing safe)
+     **************************************************************************/
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    /**************************************************************************
+     * Exercise management (unchanged logic — same behaviour as your original)
+     **************************************************************************/
+    function renderExercises(lang) {
+      const box = lang === "English" ? document.getElementById('exerciseListEnglish') : document.getElementById('exerciseListPunjabi');
+      const list = lang === "English" ? exercisesEnglish : exercisesPunjabi;
+
+      box.innerHTML = list
+        .map(
+          (e, i) => `
+          <div class="card">
+            <b>${i + 1}. ${escapeHTML(e.title)}</b>
+            <p>${escapeHTML(e.text.slice(0, 100))}...</p>
+            <button class="delete-btn" data-index="${i}">Delete</button>
+          </div>`
+        )
+        .join("");
+
+      box.querySelectorAll(".delete-btn").forEach((btn) => {
+        btn.addEventListener("click", () => deleteExercise(btn.dataset.index, lang));
+      });
+    }
+
+    function addExercise(lang) {
+      let title = lang === "English" ? document.getElementById('exerciseTitleEnglish').value : document.getElementById('exerciseTitlePunjabi').value;
+      let text = lang === "English" ? document.getElementById('exerciseTextEnglish').value : document.getElementById('exerciseTextPunjabi').value;
+      if (!title || !text) return alert("Both fields required");
+      let list = lang === "English" ? exercisesEnglish : exercisesPunjabi;
+      list.push({ title, text });
+      localStorage.setItem('exercisesEnglish', JSON.stringify(exercisesEnglish));
+      localStorage.setItem('exercisesPunjabi', JSON.stringify(exercisesPunjabi));
+      renderExercises(lang);
+    }
+
+    function deleteExercise(i, lang) {
+      let list = lang === "English" ? exercisesEnglish : exercisesPunjabi;
+      list.splice(i, 1);
+      localStorage.setItem('exercisesEnglish', JSON.stringify(exercisesEnglish));
+      localStorage.setItem('exercisesPunjabi', JSON.stringify(exercisesPunjabi));
+      renderExercises(lang);
+    }
+
+    function deleteAllExercises() {
+      exercisesEnglish = []; exercisesPunjabi = [];
+      localStorage.setItem('exercisesEnglish', JSON.stringify(exercisesEnglish));
+      localStorage.setItem('exercisesPunjabi', JSON.stringify(exercisesPunjabi));
+      renderExercises("English"); renderExercises("Punjabi");
+    }
+
+    /**************************************************************************
+     * Quotes & Floating letters (same UI features)
+     **************************************************************************/
+    const quotes = [
+      "Practice is the key to perfection.",
+      "Every word you type is a step closer to success.",
+      "Consistency turns beginners into champions.",
+      "The keyboard is your instrument — play it daily."
+    ];
+    let qIndex = 0;
+    function showQuote() {
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        quoteBox.innerHTML = quotes[qIndex];
+        quoteBox.style.opacity = 1;
+        qIndex = (qIndex + 1) % quotes.length;
+      }, 800);
+    }
+    showQuote(); setInterval(showQuote, 10000);
+
+    // Floating letters animation creation (keeps same look)
+    document.addEventListener("DOMContentLoaded", () => {
+      const letters = ['A','B','C','D','E','F','ਕ','ਖ','ਗ','ਚ','ਜ','ਤ','ਨ','ਮ','ਸ','ਹ','ਸ਼','ਲ'];
+      const container = document.querySelector('.letters-container');
+      for (let i = 0; i < 25; i++) {
+        const span = document.createElement('span');
+        span.classList.add('letter');
+        span.textContent = letters[Math.floor(Math.random() * letters.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.bottom = Math.random() * 30 + 'px';
+        span.style.animationDuration = 3 + Math.random() * 2 + 's';
+        span.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+        container.appendChild(span);
+      }
+      setTimeout(() => {
+        document.getElementById('intro-screen').style.display = 'none';
+      }, 3000);
+    });
+
+    /**************************************************************************
+     * LOGIN / SESSION LOGIC (NEW)
+     *
+     * - sessionStorage is used so login lasts until browser/tab close.
+     * - a sessionId is created on login and stored in sessionStorage so backend
+     *   can update the same row on logout.
+     * - updateLoginStatus(...) sends POST to your Apps Script URL.
+     **************************************************************************/
+
+    // Generate a short session id
+    function genSessionId(user) {
+      return `${user}_${Date.now()}_${Math.random().toString(36).slice(2,9)}`;
+    }
+
+    // Send login/logout payload to Apps Script
+    async function updateLoginStatus(status, options = {}) {
+      // status: "Online" or "Offline"
+      // options: { useBeacon: true } — used during unload
+      const payload = {
+        action: "loginLog",
+        username: currentUser,
+        status: status,
+        timestamp: new Date().toISOString(),
+        sessionId: sessionId
+      };
+
+      const body = JSON.stringify(payload);
+
+      // If useBeacon requested (unload), try sendBeacon first (more reliable)
+      if (options.useBeacon && navigator.sendBeacon) {
+        try {
+          const blob = new Blob([body], { type: "application/json" });
+          // sendBeacon returns true if queued successfully
+          navigator.sendBeacon(GOOGLE_SHEET_URL, blob);
+          return;
+        } catch (e) {
+          // fallthrough to fetch fallback
+          console.warn("sendBeacon failed, falling back to fetch:", e);
         }
+      }
 
-        // Add event listener for the back button
-        document.getElementById("back_to_exercise_button").addEventListener("click", function() {
-            window.location.href = "../index.html"; // Adjust the path as necessary
+      // Normal fetch (for login/logout when not unloading)
+      try {
+        await fetch(GOOGLE_SHEET_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: body,
+          keepalive: !!options.useBeacon // keepalive true helps for unload too if supported
+        });
+      } catch (err) {
+        console.error("Failed to send login status:", err);
+      }
+    }
+
+    // Called from login modal
+    async function verifyCredentials() {
+      const userField = document.getElementById('username');
+      const passField = document.getElementById('password');
+      const user = userField.value.trim();
+      const pass = passField.value.trim();
+
+      // keep original behaviour for demo credentials
+      if (user === "smt" && pass === "1995") {
+        isLoggedIn = true;
+        currentUser = user;
+        sessionId = genSessionId(user);
+
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('currentUser', currentUser);
+        sessionStorage.setItem('sessionId', sessionId);
+
+        loginModal.style.display = 'none';
+        exerciseContainer.classList.remove('hidden');
+        logoutButton.classList.remove('hidden');
+        loginBtn.classList.add('hidden');
+
+        // Send Online event
+        await updateLoginStatus("Online");
+      } else {
+        loginMessage.innerText = "Invalid credentials (try blank for demo)";
+      }
+    }
+
+    // Logout function (manual logout button)
+    async function logout() {
+      if (!currentUser) {
+        // Nothing to do
+      } else {
+        await updateLoginStatus("Offline");
+      }
+
+      sessionStorage.removeItem('isLoggedIn');
+      sessionStorage.removeItem('currentUser');
+      sessionStorage.removeItem('sessionId');
+
+      isLoggedIn = false;
+      currentUser = null;
+      sessionId = null;
+
+      exerciseContainer.classList.add('hidden');
+      logoutButton.classList.add('hidden');
+      loginBtn.classList.remove('hidden');
+    }
+
+    // Auto-logout when browser/tab is closed or navigated away
+    window.addEventListener('beforeunload', (ev) => {
+      // if logged in, send Offline status using sendBeacon (best effort)
+      if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        // we call updateLoginStatus with useBeacon true so it attempts navigator.sendBeacon()
+        updateLoginStatus("Offline", { useBeacon: true });
+        // No blocking — this is best-effort so the unload isn't prevented
+      }
+      // no returnValue set; we are not blocking
+    });
+
+    // Page load: restore UI state if sessionStorage says user is logged in
+    window.onload = () => {
+      if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        isLoggedIn = true;
+        currentUser = sessionStorage.getItem('currentUser');
+        sessionId = sessionStorage.getItem('sessionId');
+
+        exerciseContainer.classList.remove('hidden');
+        logoutButton.classList.remove('hidden');
+        loginBtn.classList.add('hidden');
+      }
+
+      renderExercises("English");
+      renderExercises("Punjabi");
+    };
+
+    /**************************************************************************
+     * Import exercises from URL (keeps your original function, slightly safe)
+     **************************************************************************/
+    async function loadExercisesFromUrl() {
+      const url = document.getElementById("exerciseFileUrl").value.trim();
+      if (!url) return alert("Please enter a valid file URL!");
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+
+        // Split the text into lines and process
+        const sections = text.split(/###/).filter(Boolean);
+        exercisesEnglish = [];
+        exercisesPunjabi = [];
+
+        sections.forEach(section => {
+          const langMatch = section.match(/(English|Punjabi)/i);
+          if (!langMatch) return;
+          const lang = langMatch[1].trim();
+          const exercises = section.split(/---/).filter(t => t.trim().length > 0);
+          for (let i = 0; i < exercises.length; i += 2) {
+            const title = exercises[i].trim();
+            const content = exercises[i + 1] ? exercises[i + 1].trim() : "";
+            if (!title || !content) continue;
+            if (lang.toLowerCase() === "english") exercisesEnglish.push({ title, text: content });
+            else if (lang.toLowerCase() === "punjabi") exercisesPunjabi.push({ title, text: content });
+          }
         });
 
-        // Retrieve the exercise from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const exercise = urlParams.get('exercise');
+        // Save to localStorage and render
+        localStorage.setItem('exercisesEnglish', JSON.stringify(exercisesEnglish));
+        localStorage.setItem('exercisesPunjabi', JSON.stringify(exercisesPunjabi));
+        renderExercises("English");
+        renderExercises("Punjabi");
+      } catch (err) {
+        console.error(err);
+        alert("❌ Failed to load exercises. Check your URL or file format.");
+      }
+    }
 
-        if (exercise) {
-            const chunks = splitIntoChunks(decodeURIComponent(exercise), 10); // Split exercise into 10 chunks
-            document.getElementById("test_text").innerText = chunks[0]; // Display the first chunk
-            let currentChunkIndex = 0; // Initialize current chunk index
-
-            // Function to load the next chunk
-            function loadNextChunk() {
-                currentChunkIndex++;
-                if (currentChunkIndex < chunks.length) {
-                    document.getElementById("test_text").innerText = chunks[currentChunkIndex]; // Load next chunk
-                    document.getElementById("current_chunk_number").innerText = currentChunkIndex + 1; // Update chunk number
-                } else {
-                    document.getElementById("test_text").innerText = "No more chunks."; // End of chunks
-                }
-            }
-
-            // Call loadNextChunk() when the user submits the test
-            document.getElementById("submit_button").addEventListener("click", loadNextChunk);
-        } else {
-            document.getElementById("test_text").innerText = "Loading...";
-        }
-    </script>
+    // Placeholder for file upload (optional)
+    function loadExercisesFromFile() {
+      alert("File upload not implemented in this demo — use the URL import.");
+    }
+  </script>
 </body>
-
 </html>
